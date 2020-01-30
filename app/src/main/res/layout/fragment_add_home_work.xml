@@ -1,0 +1,75 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.pragyatitsolutions.SchoolManagement.AddHomeWorkFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="HomeWork Section"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/red" />
+
+            <Spinner
+                android:id="@+id/HomeworkClasses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/classes" />
+
+            <Spinner
+                android:id="@+id/HomeworkSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/section" />
+
+            <EditText
+                android:id="@+id/HomeworkSubject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Your Subject" />
+
+            <EditText
+                android:id="@+id/HomworkRemarks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter The Homework Remarks Here" />
+
+            <Button
+                android:id="@+id/ChooseDeadline"
+                android:layout_marginTop="10dp"
+                android:layout_width="200dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_buttons"
+                android:textColor="@color/ToolbarColor"
+
+                android:inputType="date"
+                android:text="CHOOSE DATE" />
+
+            <Button
+                android:id="@+id/HomeworkAdd"
+                android:layout_marginTop="10dp"
+                android:layout_width="200dp"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_buttons"
+                android:textColor="@color/ToolbarColor"
+                android:text="Add HomeWork" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</ScrollView>

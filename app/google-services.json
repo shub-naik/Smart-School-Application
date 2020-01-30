@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1059785531837",
+    "firebase_url": "https://pragyatsamrtschoolapp.firebaseio.com",
+    "project_id": "pragyatsamrtschoolapp",
+    "storage_bucket": "pragyatsamrtschoolapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059785531837:android:5287059ba810697d9a72d4",
+        "android_client_info": {
+          "package_name": "com.pragyatitsolutions.SchoolManagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1059785531837-1gd6a6jlf88u54eqrm9s6k1ns8mq6105.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCZQ7eVbO6MOpDyEAIZr1hr5WTLqyXuUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1059785531837-1gd6a6jlf88u54eqrm9s6k1ns8mq6105.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

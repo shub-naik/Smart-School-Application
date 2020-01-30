@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/ViewDriverName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Driver Name :" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/ViewDriverPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Driver Phone : " />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/ViewDriverPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Driver Password : " />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/ViewDriverLicense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Driver License : " />
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
