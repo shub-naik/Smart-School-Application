@@ -35,7 +35,7 @@ public class NotificationSendingActivityUsingVolley extends AppCompatActivity {
 
 
     String FCM_API_URL = "https://fcm.googleapis.com/fcm/send";
-    final String serverKey = "key=AIzaSyAjmxNSjxAPTKd67NbN7rkfO0VlydmwuZI";
+    final String serverKey = "key=AIzaSyDVeB_ohLDk1_NkWJY2fCVlb5YM4P2Jztg";
 
     // Notification Added
     public static final String CHANNEL_ID = "shubham_naik";
