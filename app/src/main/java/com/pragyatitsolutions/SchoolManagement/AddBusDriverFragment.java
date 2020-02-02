@@ -38,7 +38,6 @@ public class AddBusDriverFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_bus_driver, container, false);
-        final ProgressDialog progressDialog = new ProgressDialog(getContext());
 
         phone = view.findViewById(R.id.DriverMobileNumber);
         password = view.findViewById(R.id.DriverPassword);
@@ -48,9 +47,9 @@ public class AddBusDriverFragment extends Fragment {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog.setTitle("Driver Management");
-                progressDialog.setMessage("Adding Driver");
-                progressDialog.setCancelable(false);
+                final ProgressDialog progress = new ProgressDialog(getActivity());
+                progress.setCancelable(false);
+                progress.setMessage("Adding Data, Please Wait....");
                 final String Phone = phone.getEditText().getText().toString();
                 final String Password = password.getEditText().getText().toString();
                 final String License = license.getEditText().getText().toString();
@@ -59,21 +58,17 @@ public class AddBusDriverFragment extends Fragment {
                 if (!validatePhoneNumber(Phone) | !validatePassword(Password) | !validateLicenseNumber(License)) {
                     return;
                 } else {
+                    progress.show();
                     final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("DriversData");
-
-                    final HashMap<String, Object> hashMap = new HashMap<>();
 
                     ref.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            progressDialog.show();
                             long childrens = dataSnapshot.getChildrenCount() + 1;
-                            hashMap.put("ID", "D-" + Phone + "-" + childrens);
-                            hashMap.put("Phone", Phone);
-                            hashMap.put("Password", Password);
-                            hashMap.put("License_Number", License);
-                            ref.child(Phone).setValue(hashMap);
-                            progressDialog.dismiss();
+
+                            Driver d = new Driver("D-" + Phone + "-" + childrens, Phone, License, Password);
+                            ref.child(Phone).setValue(d);
+                            progress.dismiss();
                             Toast.makeText(getContext(), "Bus Driver Added", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getActivity(), BusManagementActivity.class);
                             startActivity(intent);
@@ -81,11 +76,10 @@ public class AddBusDriverFragment extends Fragment {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                            progress.dismiss();
                         }
                     });
                 }
-                progressDialog.dismiss();
             }
         });
 
@@ -110,7 +104,7 @@ public class AddBusDriverFragment extends Fragment {
     }
 
     private boolean validatePassword(String Password) {
-        if (Password.isEmpty() && Password.length() < 6) {
+        if (Password.isEmpty() || Password.length() < 6) {
             password.setError("Password must be atleast 6 characters long");
             return false;
         }

@@ -3,6 +3,9 @@ package com.pragyatitsolutions.SchoolManagement;
 public class Driver {
     String fullname, mobile_number, driver_license, password;
 
+    public Driver() {
+    }
+
     public Driver(String fullname, String mobile_number, String driver_license, String password) {
         this.fullname = fullname;
         this.mobile_number = mobile_number;

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,6 +38,7 @@ public class ViewDriverAdapter extends RecyclerView.Adapter<ViewDriverAdapter.Dr
         holder.drivername.append(name);
         holder.driverpassword.append(password);
         holder.driverphone.append(phone);
+        holder.driverlicense.append(license);
     }
 
     @Override
@@ -56,7 +56,6 @@ public class ViewDriverAdapter extends RecyclerView.Adapter<ViewDriverAdapter.Dr
             driverphone = itemView.findViewById(R.id.ViewDriverPhone);
             driverlicense = itemView.findViewById(R.id.ViewDriverLicense);
             driverpassword = itemView.findViewById(R.id.ViewDriverPassword);
-
         }
     }
 }

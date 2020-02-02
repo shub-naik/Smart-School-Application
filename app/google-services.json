@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "1059785531837-mm1jb98vo6g43th6cr7a5glt2rhi7blo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pragyatitsolutions.SchoolManagement",
+            "certificate_hash": "0bef717a8fd9078d4fb1e102f435e5598720443b"
+          }
+        },
+        {
+          "client_id": "1059785531837-7f2eap14jv51jekakbnnvq1ra8ht52p2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pragyatitsolutions.SchoolManagement",
+            "certificate_hash": "de9f7a0ddb8daa64feea21b4fc348376438e186a"
+          }
+        },
+        {
           "client_id": "1059785531837-1gd6a6jlf88u54eqrm9s6k1ns8mq6105.apps.googleusercontent.com",
           "client_type": 3
         }

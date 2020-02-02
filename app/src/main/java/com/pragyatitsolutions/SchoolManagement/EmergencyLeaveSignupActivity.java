@@ -57,14 +57,12 @@ public class EmergencyLeaveSignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_emergency_leave_signup);
         getSupportActionBar().setTitle("Emergency Leave");
 
-
         Phone = findViewById(R.id.EmergencyLeaveSignupPhone);
         Name = findViewById(R.id.EmergencyLeaveSignupName);
         Remarks = findViewById(R.id.EmergencyLeaveSignupRemarks);
         ParentsPhone = findViewById(R.id.EmergencyLeaveParentPhoneNumber);
         classes = findViewById(R.id.EmergencyStudentsClasses);
         section = findViewById(R.id.EmergencyStudentsSection);
-
         image = findViewById(R.id.EmergencyLeaveImage);
 
         image.setOnClickListener(new View.OnClickListener() {

@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -53,6 +54,7 @@ public class AddStudent extends AppCompatActivity {
     String verificationId;
     StorageReference mStorageRef;
     String token;
+    ProgressDialog progressOTP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +111,10 @@ public class AddStudent extends AppCompatActivity {
                     final String p = phone.getText().toString();
                     // Changes Done From Here.
                     SendVerificationCode("+91" + p);
+                    progressOTP = new ProgressDialog(AddStudent.this);
+                    progressOTP.setCancelable(false);
+                    progressOTP.setMessage("Sending OTP, Please Wait....");
+                    progressOTP.show();
                 }
             }
         });
@@ -155,23 +161,6 @@ public class AddStudent extends AppCompatActivity {
     private void AddDataToFirebase(Task<AuthResult> task) {
         if (task.isSuccessful()) {
 
-            // Show Dialog Box while Data is Adding to the Database.
-            // Build an AlertDialog
-            final AlertDialog.Builder builder = new AlertDialog.Builder(AddStudent.this);
-
-            LayoutInflater inflater = getLayoutInflater();
-            View dialogView = inflater.inflate(R.layout.progress_dialog_using_alert_dialog, null);
-
-            // Specify alert dialog is not cancelable/not ignorable
-            builder.setCancelable(false);
-
-            // Set the custom layout as alert dialog view
-            builder.setView(dialogView);
-
-            final AlertDialog alertDialog = builder.create();
-            alertDialog.show();
-            // Dialog Box Code Ends Here
-
             final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("StudentsData");
             final String p = phone.getText().toString();
             final String c = classes.getSelectedItem().toString();
@@ -188,6 +177,13 @@ public class AddStudent extends AppCompatActivity {
                     new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull final DataSnapshot dataSnapshot) {
+
+                            final ProgressDialog progress = new ProgressDialog(AddStudent.this);
+                            progress.setCancelable(false);
+                            progress.setMessage("Adding Data, Please Wait....");
+                            progress.show();
+
+
                             final StorageReference riversRef = mStorageRef.child(c).child(s).child(p);
                             riversRef.putFile(imageuri)
                                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -205,7 +201,10 @@ public class AddStudent extends AppCompatActivity {
                                                     Student student = new Student(Deviceid.getText().toString(), token, ImageDownloadUrl[0].toString(), sname.getText().toString(), p, c, s, RollNo, email.getText().toString(), studentaddress.getText().toString(), mothersname.getText().toString(), studentpassword.getText().toString());
 
                                                     ref.child(c).child(s).child(p).setValue(student);
-                                                    alertDialog.dismiss();
+                                                    progress.dismiss();
+                                                    Intent i = new Intent(AddStudent.this, AddStudent.class);
+                                                    startActivity(i);
+                                                    finish();
                                                 }
                                             });
                                         }
@@ -213,22 +212,17 @@ public class AddStudent extends AppCompatActivity {
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception exception) {
+                                            progress.dismiss();
                                             Toast.makeText(AddStudent.this, "Failure Occured while Uploading the Data......", Toast.LENGTH_SHORT).show();
-                                            alertDialog.dismiss();
                                         }
                                     });
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
-                            alertDialog.dismiss();
                         }
                     }
             );
-
-            Intent i = new Intent(AddStudent.this, AddStudent.class);
-            startActivity(i);
-            finish();
         } else {
             Toast.makeText(AddStudent.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -258,12 +252,14 @@ public class AddStudent extends AppCompatActivity {
         @Override
         public void onVerificationFailed(FirebaseException e) {
             Toast.makeText(AddStudent.this, "Verification Failed....Sorry " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            progressOTP.dismiss();
         }
 
         @Override
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
             verificationId = s;
+            progressOTP.dismiss();
         }
     };
 }

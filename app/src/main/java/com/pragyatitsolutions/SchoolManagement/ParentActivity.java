@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -63,7 +64,7 @@ public class ParentActivity extends AppCompatActivity {
                 progress.setCancelable(false);
                 progress.show();
 
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("StudentsData");
+                final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("StudentsData");
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     @Override
@@ -76,6 +77,14 @@ public class ParentActivity extends AppCompatActivity {
                                         Intent i = new Intent(ParentActivity.this, ParentMainIndexActivity.class);
 
                                         flag = 1;
+
+                                        // For Device id
+                                        SharedPreferences pref_device_id = getApplicationContext().getSharedPreferences("TokenGenerated", 0); // 0 - for private mode
+                                        SharedPreferences.Editor pref_device_editor = pref_device_id.edit();
+
+                                        String DEVICE_ID = pref_device_id.getString("DeviceId", null);
+                                        s.setDeviceId(DEVICE_ID);
+                                        ref.child(s.getSclass()).child(s.getSsection()).child(s.getSphone()).child("deviceId").setValue(DEVICE_ID);
 
                                         // Storing Parent Login Credentials
                                         SharedPreferences pref = getApplicationContext().getSharedPreferences("ParentsPreferences", 0); // 0 - for private mode
