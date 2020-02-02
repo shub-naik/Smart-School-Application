@@ -30,6 +30,5 @@ public class NotificationHelper {
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         notificationManagerCompat.notify(1, builder.build());
-
     }
 }
