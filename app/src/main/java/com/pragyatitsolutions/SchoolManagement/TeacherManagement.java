@@ -57,12 +57,5 @@ public class TeacherManagement extends AppCompatActivity {
             }
         });
 
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(TeacherManagement.this, DeleteTeacher.class);
-                startActivity(i);
-            }
-        });
     }
 }
